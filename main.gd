@@ -18,7 +18,6 @@ func spawn_enemies():
 		wave += 1
 		$EnemySpawnCooldown.wait_time = enemy_table[wave][1]
 
-
 	var viewport = get_viewport_rect()
 	var viewport_size = viewport.size
 	viewport.position -= viewport_size / 2  # burger fix
@@ -42,7 +41,13 @@ func spawn_enemies():
 			add_child(new_enemy)
 		$EnemySpawnCooldown.start()
 
-
+func _ready():
+	DebugUI.get_node("Stats").add_property(
+		$EnemySpawnCooldown, "time_left", DebugProperty.DisplayOption.ROUNDED
+	)
+	DebugUI.get_node("Stats").add_property(self, "time_elapsed", DebugProperty.DisplayOption.ROUNDED)
+	DebugUI.get_node("Stats").add_property(self, "wave", DebugProperty.DisplayOption.DEFAULT)
+	
 func _process(delta):
 	time_elapsed += delta
 	spawn_enemies()
