@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://djhanqyimpptk"]
+[gd_scene load_steps=26 format=3 uid="uid://djhanqyimpptk"]
 
 [ext_resource type="Script" path="res://player/nodes/player.gd" id="1_swtdm"]
 [ext_resource type="Texture2D" uid="uid://d3m2prlxphppp" path="res://assets/playerSpriteSheet.png" id="2_4oeg1"]
@@ -130,6 +130,9 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ave4e"]
+size = Vector2(54, 18)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fje8h"]
 size = Vector2(129, 128)
 
@@ -144,13 +147,12 @@ script = ExtResource("1_swtdm")
 position = Vector2(-0.500002, -0.500002)
 scale = Vector2(3.275, 3.275)
 sprite_frames = SubResource("SpriteFrames_y8dq5")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame = 8
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_fje8h")
+position = Vector2(6, 45)
+shape = SubResource("RectangleShape2D_ave4e")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -159,6 +161,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="PlayerHitbox" type="Area2D" parent="." node_paths=PackedStringArray("experience", "health")]
+visible = false
 collision_mask = 10
 script = ExtResource("3_8vyqf")
 experience = NodePath("../Experience")
