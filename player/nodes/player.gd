@@ -21,17 +21,21 @@ func _physics_process(_delta):
 	move_and_slide()
 
 	if $Cooldown.is_stopped():
-		var closest_enemy = get_closest_enemy()
-		if not closest_enemy:
-			return
+		shoot_nearest_enemy()
 
-		var direction = closest_enemy.global_position - position
-		var shot: Shot = ShotScene.instantiate()
-		get_tree().get_root().add_child(shot)
-		shot.shot_speed = shot_speed
-		shot.position = position
-		shot.rotation = direction.angle()
-		$Cooldown.start()
+
+func shoot_nearest_enemy():
+	var closest_enemy = get_closest_enemy()
+	if not closest_enemy:
+		return
+
+	var direction = closest_enemy.global_position - position
+	var shot: Shot = ShotScene.instantiate()
+	get_tree().get_root().add_child(shot)
+	shot.shot_speed = shot_speed
+	shot.position = position
+	shot.rotation = direction.angle()
+	$Cooldown.start()
 
 
 func get_closest_enemy() -> CharacterBody2D:
@@ -47,10 +51,6 @@ func get_closest_enemy() -> CharacterBody2D:
 			nearest_enemy = enemy
 
 	return nearest_enemy
-
-
-func _on_enemy_player_hit():
-	$Health.take_damage()
 
 
 func _on_health_died():

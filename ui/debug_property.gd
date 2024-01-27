@@ -19,6 +19,9 @@ func _init(_object, _property, _label, _display):
 
 func set_label():
 	# Sets the label's text.
+	if not object:
+		return
+
 	var label_text = object.name + "/" + property.get_concatenated_names() + " : "
 	var property_value = object.get_indexed(property)
 	match display:

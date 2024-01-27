@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://br2rptkyhrrtx"]
+
+[ext_resource type="Script" path="res://enemies/nodes/damage_area.gd" id="1_u0h2s"]
+[ext_resource type="Texture2D" uid="uid://y6v62gdaff27" path="res://assets/icon.svg" id="2_f2d0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltfi4"]
+size = Vector2(126.5, 127)
+
+[node name="DamageArea" type="Area2D"]
+scale = Vector2(1.75, 1.75)
+collision_layer = 8
+script = ExtResource("1_u0h2s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ltfi4")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.380392, 1, 1)
+position = Vector2(-0.999998, -1)
+texture = ExtResource("2_f2d0j")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

@@ -14,6 +14,7 @@ func enter():
 func physics_update(_delta):
 	if not player or player.is_queued_for_deletion():
 		push_warning("Player not found or freed!")
+		return
 
 	var direction = player.global_position - enemy.global_position
 	enemy.velocity = direction.normalized() * move_speed

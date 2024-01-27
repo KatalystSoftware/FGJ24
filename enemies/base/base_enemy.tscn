@@ -24,7 +24,7 @@ texture = ExtResource("2_6h1m2")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("2_iof6c")
 health = NodePath("../Health")
 
@@ -42,5 +42,8 @@ initial_state = NodePath("Chase")
 script = ExtResource("6_fuso2")
 enemy = NodePath("../..")
 
-[connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_area_entered"]
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="died" from="Health" to="." method="_on_health_died"]
