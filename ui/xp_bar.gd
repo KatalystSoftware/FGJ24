@@ -14,4 +14,5 @@ func _process(_delta):
 		value = 0
 		return
 
+	max_value = player.get_node("Experience").experience_to_level
 	value = player.get_node("Experience").experience
