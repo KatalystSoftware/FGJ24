@@ -1,11 +1,56 @@
-[gd_scene load_steps=8 format=3 uid="uid://dl3fw6nhenubu"]
+[gd_scene load_steps=13 format=3 uid="uid://dl3fw6nhenubu"]
 
 [ext_resource type="Script" path="res://enemies/base/base_enemy.gd" id="1_0v5jd"]
-[ext_resource type="Texture2D" uid="uid://y6v62gdaff27" path="res://assets/icon.svg" id="2_6h1m2"]
+[ext_resource type="Texture2D" uid="uid://ci4yptyfrhd7p" path="res://assets/skibidi_toilet-sheet.png" id="2_8ahve"]
 [ext_resource type="Script" path="res://shared/nodes/hitbox.gd" id="2_iof6c"]
 [ext_resource type="Script" path="res://shared/nodes/health.gd" id="3_aphmk"]
 [ext_resource type="Script" path="res://enemies/nodes/state_machine.gd" id="5_eth0d"]
 [ext_resource type="Script" path="res://enemies/nodes/states/chase.gd" id="6_fuso2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uldfo"]
+atlas = ExtResource("2_8ahve")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrfdh"]
+atlas = ExtResource("2_8ahve")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ttkv"]
+atlas = ExtResource("2_8ahve")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12frj"]
+atlas = ExtResource("2_8ahve")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7d7qc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uldfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrfdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ttkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12frj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ttkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrfdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uldfo")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 6.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5qat"]
 size = Vector2(129, 126)
@@ -15,12 +60,16 @@ collision_layer = 2
 collision_mask = 52
 script = ExtResource("1_0v5jd")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.499996, -65)
+scale = Vector2(4.03125, 4.03125)
+sprite_frames = SubResource("SpriteFrames_7d7qc")
+animation = &"attack"
+autoplay = "attack"
+frame_progress = 0.783628
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v5qat")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0, 1)
-texture = ExtResource("2_6h1m2")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 2
