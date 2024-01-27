@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbqg60ikgswiw"]
+
+[ext_resource type="Texture2D" uid="uid://y6v62gdaff27" path="res://assets/icon.svg" id="1_easaf"]
+[ext_resource type="Script" path="res://shared/nodes/xp_drop.gd" id="1_ow340"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgtjl"]
+size = Vector2(500, 500)
+
+[node name="XPDrop" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+collision_layer = 64
+script = ExtResource("1_ow340")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cgtjl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 1, 1)
+texture = ExtResource("1_easaf")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

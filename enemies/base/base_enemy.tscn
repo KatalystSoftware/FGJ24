@@ -33,6 +33,7 @@ shape = SubResource("RectangleShape2D_v5qat")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_aphmk")
+count = 3
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_eth0d")

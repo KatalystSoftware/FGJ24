@@ -1,15 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://djhanqyimpptk"]
+[gd_scene load_steps=7 format=3 uid="uid://djhanqyimpptk"]
 
 [ext_resource type="Script" path="res://player/nodes/player.gd" id="1_swtdm"]
 [ext_resource type="Texture2D" uid="uid://y6v62gdaff27" path="res://assets/icon.svg" id="2_8nyt6"]
-[ext_resource type="Script" path="res://shared/nodes/hitbox.gd" id="3_frcqf"]
+[ext_resource type="Script" path="res://player/nodes/player_hitbox.gd" id="3_8vyqf"]
 [ext_resource type="Script" path="res://shared/nodes/health.gd" id="4_o8ns1"]
+[ext_resource type="Script" path="res://player/nodes/experience.gd" id="5_wkw1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fje8h"]
 size = Vector2(129, 128)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 56
+collision_mask = 120
 script = ExtResource("1_swtdm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -24,15 +25,19 @@ texture = ExtResource("2_8nyt6")
 wait_time = 0.25
 one_shot = true
 
-[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+[node name="PlayerHitbox" type="Area2D" parent="." node_paths=PackedStringArray("experience", "health")]
 collision_mask = 10
-script = ExtResource("3_frcqf")
+script = ExtResource("3_8vyqf")
+experience = NodePath("../Experience")
 health = NodePath("../Health")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
 shape = SubResource("RectangleShape2D_fje8h")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_o8ns1")
+
+[node name="Experience" type="Node" parent="."]
+script = ExtResource("5_wkw1t")
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]

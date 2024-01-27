@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjax6u8sj1x1f"]
+[gd_scene load_steps=5 format=3 uid="uid://bjax6u8sj1x1f"]
 
 [ext_resource type="Script" path="res://ui/hp_bar.gd" id="1_spuqh"]
+[ext_resource type="Script" path="res://ui/xp_bar.gd" id="1_uilr4"]
+[ext_resource type="Script" path="res://ui/level_label.gd" id="2_8ct5m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_24u54"]
 font_size = 24
@@ -25,13 +27,14 @@ size_flags_vertical = 1
 value = 50.0
 rounded = true
 show_percentage = false
+script = ExtResource("1_uilr4")
 
 [node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
 self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/ColorRect"]
+[node name="LevelLabel" type="Label" parent="HBoxContainer/ColorRect"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -43,6 +46,7 @@ grow_vertical = 0
 text = "1"
 label_settings = SubResource("LabelSettings_24u54")
 horizontal_alignment = 1
+script = ExtResource("2_8ct5m")
 
 [node name="HPBar" type="ProgressBar" parent="HBoxContainer"]
 self_modulate = Color(1, 0, 0, 1)
