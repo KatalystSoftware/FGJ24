@@ -19,6 +19,7 @@ config/icon="res://assets/icon.svg"
 
 DebugUI="*res://ui/debug_ui.tscn"
 PlayerStats="*res://player/nodes/player_stats.gd"
+Globals="*res://globals.gd"
 
 [input]
 

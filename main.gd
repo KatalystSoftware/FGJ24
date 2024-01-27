@@ -44,6 +44,12 @@ func spawn_enemies():
 		$EnemySpawnCooldown.start()
 
 
+func remove_enemies():
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	for enemy in enemies:
+		enemy.queue_free()
+
+
 func _ready():
 	DebugUI.get_node("Stats").add_property(
 		$EnemySpawnCooldown, "time_left", DebugProperty.DisplayOption.ROUNDED
@@ -55,5 +61,9 @@ func _ready():
 
 
 func _process(delta):
+	if Globals.is_dying:
+		remove_enemies()
+		return
+
 	time_elapsed += delta
 	spawn_enemies()

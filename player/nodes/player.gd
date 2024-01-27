@@ -13,6 +13,9 @@ func _ready():
 
 
 func _physics_process(_delta):
+	if Globals.is_dying:
+		return
+
 	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 	velocity = movement_direction.normalized() * PlayerStats.movement_speed
@@ -67,7 +70,9 @@ func get_closest_enemy() -> CharacterBody2D:
 
 
 func _on_health_died():
-	queue_free()
+	Globals.is_dying = true
+	$AnimatedSprite2D.play("death")
+	$AnimatedSprite2D.animation_finished.connect(func(): queue_free())
 
 
 func _on_experience_level_up():
