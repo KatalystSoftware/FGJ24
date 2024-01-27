@@ -2,8 +2,6 @@ class_name Player
 extends CharacterBody2D
 
 @export var ShotScene = preload("res://player/scenes/player_shot.tscn")
-@export var shot_speed = 600.0
-@export var movement_speed = 300.0
 
 
 func _ready():
@@ -16,7 +14,7 @@ func _ready():
 func _physics_process(_delta):
 	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
-	velocity = movement_direction.normalized() * movement_speed
+	velocity = movement_direction.normalized() * PlayerStats.movement_speed
 
 	move_and_slide()
 
@@ -29,13 +27,20 @@ func shoot_nearest_enemy():
 	if not closest_enemy:
 		return
 
-	var direction = closest_enemy.global_position - position
-	var shot: Shot = ShotScene.instantiate()
-	get_tree().get_root().add_child(shot)
-	shot.shot_speed = shot_speed
-	shot.position = position
-	shot.rotation = direction.angle()
-	$Cooldown.start()
+	var spread = PlayerStats.shot_spread
+	var amount = PlayerStats.shot_amount
+	for n in range(amount):
+		var rotation_offset = spread * n / amount - spread / 2.0 + spread / (2.0 * amount)
+		var direction = position.direction_to(closest_enemy.global_position)
+		var shot: PlayerShot = ShotScene.instantiate()
+		shot.shot_damage = PlayerStats.shot_damage
+		shot.shot_speed = PlayerStats.shot_speed
+		get_tree().get_root().add_child(shot)
+		shot.position = position
+		shot.rotation = direction.angle() + rotation_offset
+		$Cooldown.wait_time = PlayerStats.shot_cooldown
+		shot.get_node("Lifetime").wait_time = PlayerStats.shot_lifetime
+		$Cooldown.start()
 
 
 func get_closest_enemy() -> CharacterBody2D:
@@ -55,3 +60,7 @@ func get_closest_enemy() -> CharacterBody2D:
 
 func _on_health_died():
 	queue_free()
+
+
+func _on_experience_level_up():
+	$LevelUpUI.show_options()

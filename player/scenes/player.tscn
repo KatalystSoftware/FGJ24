@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://djhanqyimpptk"]
+[gd_scene load_steps=9 format=3 uid="uid://djhanqyimpptk"]
 
 [ext_resource type="Script" path="res://player/nodes/player.gd" id="1_swtdm"]
 [ext_resource type="Texture2D" uid="uid://y6v62gdaff27" path="res://assets/icon.svg" id="2_8nyt6"]
 [ext_resource type="Script" path="res://player/nodes/player_hitbox.gd" id="3_8vyqf"]
 [ext_resource type="Script" path="res://shared/nodes/health.gd" id="4_o8ns1"]
 [ext_resource type="Script" path="res://player/nodes/experience.gd" id="5_wkw1t"]
+[ext_resource type="Script" path="res://ui/upgrade_options.gd" id="6_3od36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fje8h"]
 size = Vector2(129, 128)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6cpcb"]
+font_size = 32
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 120
@@ -40,4 +44,34 @@ script = ExtResource("4_o8ns1")
 [node name="Experience" type="Node" parent="."]
 script = ExtResource("5_wkw1t")
 
+[node name="LevelUpUI" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+script = ExtResource("6_3od36")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUpUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -24.5
+offset_right = 70.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="LevelUpUI/VBoxContainer"]
+layout_mode = 2
+text = "Level Up!"
+label_settings = SubResource("LabelSettings_6cpcb")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelUpUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
 [connection signal="died" from="Health" to="." method="_on_health_died"]
+[connection signal="level_up" from="Experience" to="." method="_on_experience_level_up"]

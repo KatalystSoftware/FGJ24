@@ -4,9 +4,9 @@ extends Area2D
 @export var health: Health
 
 
-func damage() -> void:
+func damage(amount: int = 1) -> void:
 	if not health:
 		push_warning("Unconnected hitbox")
 		return
 
-	health.take_damage()
+	health.take_damage(amount)

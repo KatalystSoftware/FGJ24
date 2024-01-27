@@ -7,7 +7,7 @@ signal died  ## Signal emitted when health falls to 0
 
 
 ## Called when Hitbox takes damage
-func take_damage():
-	count -= 1
+func take_damage(amount: int = 1):
+	count -= amount
 	if count <= 0:
 		died.emit()

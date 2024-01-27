@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://ui/debug_overlay.gd" id="1_k48hs"]
 
 [node name="Debug UI" type="CanvasLayer"]
+process_mode = 3
 
 [node name="Stats" type="MarginContainer" parent="."]
 offset_right = 40.0
