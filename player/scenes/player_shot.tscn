@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbqigvjovo6nv"]
+[gd_scene load_steps=5 format=3 uid="uid://cbqigvjovo6nv"]
 
 [ext_resource type="Script" path="res://player/nodes/player_shot.gd" id="1_kxh37"]
-[ext_resource type="Texture2D" uid="uid://y6v62gdaff27" path="res://assets/icon.svg" id="2_285am"]
+[ext_resource type="Texture2D" uid="uid://mcg7e3ee524q" path="res://assets/suitcase_projectile.png" id="2_yj0y7"]
+[ext_resource type="Script" path="res://shared/nodes/spinning_sprite2d.gd" id="3_grlyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltfi4"]
 size = Vector2(38, 38)
 
 [node name="PlayerShot" type="Area2D"]
-position = Vector2(-172, -94)
 collision_layer = 4
 collision_mask = 50
 script = ExtResource("1_kxh37")
@@ -16,9 +16,9 @@ script = ExtResource("1_kxh37")
 shape = SubResource("RectangleShape2D_ltfi4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0, 1, 0, 1)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_285am")
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("2_yj0y7")
+script = ExtResource("3_grlyn")
 
 [node name="Lifetime" type="Timer" parent="."]
 one_shot = true
