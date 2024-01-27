@@ -13,11 +13,11 @@ config_version=5
 config/name="Fgj 24"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [autoload]
 
-DebugUI="*res://debug_ui.tscn"
+DebugUI="*res://ui/debug_ui.tscn"
 
 [input]
 
@@ -45,6 +45,15 @@ move_down={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Player Attack"
+2d_physics/layer_4="Enemy Attack"
+2d_physics/layer_5="Obstacle"
+2d_physics/layer_6="Wall"
 
 [rendering]
 

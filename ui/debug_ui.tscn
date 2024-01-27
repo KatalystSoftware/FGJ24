@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bie7r7j7dg4sw"]
 
-[ext_resource type="Script" path="res://debug_overlay.gd" id="1_k48hs"]
+[ext_resource type="Script" path="res://ui/debug_overlay.gd" id="1_k48hs"]
 
 [node name="Debug UI" type="CanvasLayer"]
 

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl3fw6nhenubu"]
+
+[ext_resource type="Script" path="res://enemies/base/base_enemy.gd" id="1_0v5jd"]
+[ext_resource type="Texture2D" uid="uid://y6v62gdaff27" path="res://assets/icon.svg" id="2_6h1m2"]
+[ext_resource type="Script" path="res://shared/nodes/hitbox.gd" id="2_iof6c"]
+[ext_resource type="Script" path="res://shared/nodes/health.gd" id="3_aphmk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5qat"]
+size = Vector2(129, 126)
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 52
+script = ExtResource("1_0v5jd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v5qat")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_6h1m2")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("2_iof6c")
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_v5qat")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_aphmk")
+
+[connection signal="died" from="Health" to="." method="_on_health_died"]
