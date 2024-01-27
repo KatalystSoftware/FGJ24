@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bie7r7j7dg4sw"]
+
+[ext_resource type="Script" path="res://debug_overlay.gd" id="1_k48hs"]
+
+[node name="Debug UI" type="CanvasLayer"]
+
+[node name="Stats" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_k48hs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Stats"]
+layout_mode = 2
