@@ -12,8 +12,9 @@ var time_elapsed = 0.0
 var next_wave_at = 10.0
 var wave = 0
 
+
 func spawn_enemies():
-	if next_wave_at <= time_elapsed && wave < enemy_table.size() - 1: 
+	if next_wave_at <= time_elapsed && wave < enemy_table.size() - 1:
 		next_wave_at += enemy_table[wave][0]
 		wave += 1
 		$EnemySpawnCooldown.wait_time = enemy_table[wave][1]
@@ -41,13 +42,17 @@ func spawn_enemies():
 			add_child(new_enemy)
 		$EnemySpawnCooldown.start()
 
+
 func _ready():
 	DebugUI.get_node("Stats").add_property(
 		$EnemySpawnCooldown, "time_left", DebugProperty.DisplayOption.ROUNDED
 	)
-	DebugUI.get_node("Stats").add_property(self, "time_elapsed", DebugProperty.DisplayOption.ROUNDED)
+	DebugUI.get_node("Stats").add_property(
+		self, "time_elapsed", DebugProperty.DisplayOption.ROUNDED
+	)
 	DebugUI.get_node("Stats").add_property(self, "wave", DebugProperty.DisplayOption.DEFAULT)
-	
+
+
 func _process(delta):
 	time_elapsed += delta
 	spawn_enemies()
