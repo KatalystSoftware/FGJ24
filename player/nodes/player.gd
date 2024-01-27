@@ -17,6 +17,13 @@ func _physics_process(_delta):
 
 	velocity = movement_direction.normalized() * PlayerStats.movement_speed
 
+	if velocity == Vector2.ZERO:
+		$AnimatedSprite2D.play("idle")
+	else:
+		var moving_to_left = velocity.x < 0
+		$AnimatedSprite2D.flip_h = moving_to_left
+		$AnimatedSprite2D.play("walk")
+
 	move_and_slide()
 
 	if $Cooldown.is_stopped():
