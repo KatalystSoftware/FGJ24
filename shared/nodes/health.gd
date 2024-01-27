@@ -3,7 +3,7 @@ extends Node
 
 signal died  ## Signal emitted when health falls to 0
 
-@export var count = 5
+@export var count = PlayerStats.max_health
 
 
 ## Called when Hitbox takes damage

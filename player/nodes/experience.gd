@@ -16,9 +16,9 @@ func _ready():
 
 
 func collect_experience():
-	experience += 1 * PlayerStats.experience_multiplier
-	if experience == experience_to_level:
+	experience += 1.0 * PlayerStats.experience_multiplier
+	if experience >= experience_to_level:
 		level += 1
-		experience = 0
+		experience = 0.0
 		experience_to_level *= experience_scale_ratio
 		level_up.emit()

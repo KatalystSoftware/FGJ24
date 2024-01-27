@@ -9,6 +9,7 @@ func _ready():
 	DebugUI.get_node("Stats").add_property(
 		$Cooldown, "time_left", DebugProperty.DisplayOption.ROUNDED
 	)
+	DebugUI.get_node("Stats").add_property($Health, "count")
 
 
 func _physics_process(_delta):
@@ -20,6 +21,8 @@ func _physics_process(_delta):
 
 	if $Cooldown.is_stopped():
 		shoot_nearest_enemy()
+		$Cooldown.wait_time = PlayerStats.shot_cooldown
+		$Cooldown.start()
 
 
 func shoot_nearest_enemy():
@@ -38,9 +41,7 @@ func shoot_nearest_enemy():
 		get_tree().get_root().add_child(shot)
 		shot.position = position
 		shot.rotation = direction.angle() + rotation_offset
-		$Cooldown.wait_time = PlayerStats.shot_cooldown
 		shot.get_node("Lifetime").wait_time = PlayerStats.shot_lifetime
-		$Cooldown.start()
 
 
 func get_closest_enemy() -> CharacterBody2D:

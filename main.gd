@@ -38,7 +38,8 @@ func spawn_enemies():
 		var pos = enemy_spawn_position_table.pick_random()
 		for enemy in enemy_table[wave][2]:
 			var new_enemy = enemy.instantiate()
-			new_enemy.position = pos
+			var rng = RandomNumberGenerator.new()
+			new_enemy.position = pos + Vector2.ONE * rng.randf_range(-250.0, 250.0)
 			add_child(new_enemy)
 		$EnemySpawnCooldown.start()
 
