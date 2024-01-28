@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddkkupghwxbyx"]
+
+[ext_resource type="AudioStream" uid="uid://drtoywjbcmv7" path="res://assets/officeHours.wav" id="1_qdm5g"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_qdm5g")
+autoplay = true
