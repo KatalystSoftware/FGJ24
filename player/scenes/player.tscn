@@ -243,7 +243,7 @@ layout_mode = 2
 text = "Quit to Menu"
 
 [node name="RegenCooldown" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 0.2
 one_shot = true
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]
