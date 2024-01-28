@@ -1,6 +1,7 @@
 extends Node
 
 const BASE_MAX_HEALTH = 25.0
+const BASE_REGEN_RATE = 0.05
 const BASE_MOVEMENT_SPEED = 300.0
 const BASE_EXPERIENCE_MULTIPLIER = 1.0
 const BASE_PICKUP_RANGE = 500.0
@@ -12,6 +13,7 @@ const BASE_SHOT_LIFETIME = 1.0
 const BASE_SHOT_SPREAD = PI / 2.0
 
 var max_health = BASE_MAX_HEALTH
+var regen_rate = BASE_REGEN_RATE
 var movement_speed = BASE_MOVEMENT_SPEED
 var experience_multiplier = BASE_EXPERIENCE_MULTIPLIER
 var pickup_range = BASE_PICKUP_RANGE
@@ -26,6 +28,7 @@ var shot_spread = BASE_SHOT_SPREAD
 
 func _init():
 	DebugUI.get_node("Stats").add_property(self, "max_health")
+	DebugUI.get_node("Stats").add_property(self, "regen_rate")
 	DebugUI.get_node("Stats").add_property(self, "movement_speed")
 	DebugUI.get_node("Stats").add_property(self, "experience_multiplier")
 	DebugUI.get_node("Stats").add_property(self, "pickup_range")

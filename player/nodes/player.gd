@@ -16,6 +16,13 @@ func _physics_process(_delta):
 	if Globals.is_dying:
 		return
 
+	if $RegenCooldown.is_stopped():
+		var new_health = $Health.count + PlayerStats.max_health * PlayerStats.regen_rate
+		if new_health > PlayerStats.max_health:
+			new_health = PlayerStats.max_health
+		$Health.count = new_health
+		$RegenCooldown.start()
+
 	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 	velocity = movement_direction.normalized() * PlayerStats.movement_speed

@@ -205,5 +205,9 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 48
 
+[node name="RegenCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="died" from="Health" to="." method="_on_health_died"]
 [connection signal="level_up" from="Experience" to="." method="_on_experience_level_up"]
