@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5u4k5gsq7aru"]
+[gd_scene load_steps=16 format=3 uid="uid://c5u4k5gsq7aru"]
 
 [ext_resource type="Script" path="res://enemies/base/base_enemy.gd" id="1_sgule"]
 [ext_resource type="Texture2D" uid="uid://d0fpcva0f5jbs" path="res://assets/skibidi_toilet-sheet3.png" id="2_mr0oi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://shared/nodes/health.gd" id="4_6lpnt"]
 [ext_resource type="Script" path="res://enemies/nodes/state_machine.gd" id="5_c6is5"]
 [ext_resource type="Script" path="res://enemies/nodes/states/chase.gd" id="6_uqi8t"]
+[ext_resource type="AudioStream" uid="uid://dfiqfmvp46sc1" path="res://assets/skibidi.mp3" id="8_o1lvq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nstsu"]
 atlas = ExtResource("2_mr0oi")
@@ -97,6 +98,14 @@ enemy = NodePath("../..")
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_o1lvq")
+volume_db = 1.405
+pitch_scale = 0.76
+autoplay = true
+mix_target = 1
+max_polyphony = 10
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="died" from="Health" to="." method="_on_health_died"]
