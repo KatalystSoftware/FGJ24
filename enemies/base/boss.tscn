@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpoerhrsu1bcc"]
+[gd_scene load_steps=13 format=3 uid="uid://cpoerhrsu1bcc"]
 
 [ext_resource type="Script" path="res://enemies/base/base_enemy.gd" id="1_y1ckm"]
 [ext_resource type="Texture2D" uid="uid://b1e4iu5q0rw38" path="res://assets/fireinthehole.png" id="2_ulsp2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://shared/nodes/health.gd" id="4_6n77r"]
 [ext_resource type="Script" path="res://enemies/nodes/state_machine.gd" id="5_pxlqx"]
 [ext_resource type="Script" path="res://enemies/nodes/states/chase.gd" id="6_ev4fo"]
+[ext_resource type="AudioStream" uid="uid://bk6smw5em5l0y" path="res://assets/fire.mp3" id="7_sdu3d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iv0bq"]
 atlas = ExtResource("2_ulsp2")
@@ -73,6 +74,11 @@ move_speed = 2000.0
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_sdu3d")
+volume_db = 1.874
+autoplay = true
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="died" from="Health" to="." method="_on_health_died"]
