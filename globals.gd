@@ -26,7 +26,7 @@ func get_random_upgrades():
 func upgrade_stat(option: UpgradeOption) -> void:
 	match option:
 		UpgradeOption.INCREASE_HEALTH:
-			PlayerStats.max_health += PlayerStats.BASE_MAX_HEALTH * 0.1
+			PlayerStats.max_health += PlayerStats.BASE_MAX_HEALTH * 0.3
 		UpgradeOption.INCREASE_MOVEMENT_SPEED:
 			PlayerStats.movement_speed += PlayerStats.BASE_MOVEMENT_SPEED * 0.1
 		UpgradeOption.INCREASE_EXPERIENCE:
@@ -34,7 +34,7 @@ func upgrade_stat(option: UpgradeOption) -> void:
 		UpgradeOption.INCREASE_AMOUNT:
 			PlayerStats.shot_amount += 1
 		UpgradeOption.INCREASE_DAMAGE:
-			PlayerStats.shot_damage += 1
+			PlayerStats.shot_damage += PlayerStats.BASE_SHOT_DAMAGE * 0.1
 		UpgradeOption.REDUCE_COOLDOWN:
 			PlayerStats.shot_cooldown -= PlayerStats.BASE_SHOT_COOLDOWN * 0.1
 		UpgradeOption.INCREASE_SHOT_SPEED:
