@@ -34,7 +34,6 @@ func spawn_enemies():
 	]
 
 	if $EnemySpawnCooldown.is_stopped():
-		var world_state = get_world_2d().get_direct_space_state()
 		var pos = enemy_spawn_position_table.pick_random()
 		for enemy in enemy_table[wave][2]:
 			var new_enemy = enemy.instantiate()

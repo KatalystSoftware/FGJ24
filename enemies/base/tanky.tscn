@@ -1,56 +1,56 @@
 [gd_scene load_steps=15 format=3 uid="uid://c5u4k5gsq7aru"]
 
 [ext_resource type="Script" path="res://enemies/base/base_enemy.gd" id="1_sgule"]
-[ext_resource type="Texture2D" uid="uid://1ea0dmyqfs26" path="res://assets/skibidi_toilet-sheet3.png" id="2_mr0oi"]
+[ext_resource type="Texture2D" uid="uid://d0fpcva0f5jbs" path="res://assets/skibidi_toilet-sheet3.png" id="2_mr0oi"]
 [ext_resource type="PackedScene" uid="uid://bi0wymti1v25l" path="res://enemies/base/xp_drop_large.tscn" id="2_pblrt"]
 [ext_resource type="Script" path="res://shared/nodes/hitbox.gd" id="3_n376r"]
 [ext_resource type="Script" path="res://shared/nodes/health.gd" id="4_6lpnt"]
 [ext_resource type="Script" path="res://enemies/nodes/state_machine.gd" id="5_c6is5"]
 [ext_resource type="Script" path="res://enemies/nodes/states/chase.gd" id="6_uqi8t"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_07ku1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nstsu"]
 atlas = ExtResource("2_mr0oi")
 region = Rect2(0, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xp8wt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgt8a"]
 atlas = ExtResource("2_mr0oi")
 region = Rect2(32, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqrgp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_onnka"]
 atlas = ExtResource("2_mr0oi")
 region = Rect2(64, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4dtu6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjy7u"]
 atlas = ExtResource("2_mr0oi")
 region = Rect2(96, 0, 32, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7d7qc"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_imm71"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_07ku1")
+"texture": SubResource("AtlasTexture_nstsu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xp8wt")
+"texture": SubResource("AtlasTexture_dgt8a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rqrgp")
+"texture": SubResource("AtlasTexture_onnka")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4dtu6")
+"texture": SubResource("AtlasTexture_xjy7u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rqrgp")
+"texture": SubResource("AtlasTexture_onnka")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xp8wt")
+"texture": SubResource("AtlasTexture_dgt8a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_07ku1")
+"texture": SubResource("AtlasTexture_nstsu")
 }],
 "loop": true,
-"name": &"attack",
-"speed": 6.0
+"name": &"default",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ouvp5"]
@@ -68,9 +68,7 @@ XPDropScene = ExtResource("2_pblrt")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.499996, -65)
 scale = Vector2(6, 6)
-sprite_frames = SubResource("SpriteFrames_7d7qc")
-animation = &"attack"
-autoplay = "attack"
+sprite_frames = SubResource("SpriteFrames_imm71")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 48.5)
