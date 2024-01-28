@@ -9,7 +9,6 @@ enum UpgradeOption {
 	REDUCE_COOLDOWN,
 	INCREASE_SHOT_SPEED,
 	INCREASE_SHOT_LIFETIME,
-	REDUCE_SPREAD
 }
 
 var is_dying = false
@@ -26,23 +25,36 @@ func get_random_upgrades():
 func upgrade_stat(option: UpgradeOption) -> void:
 	match option:
 		UpgradeOption.INCREASE_HEALTH:
-			PlayerStats.max_health += PlayerStats.BASE_MAX_HEALTH * 0.3
+			PlayerStats.max_health += (
+				PlayerStats.BASE_MAX_HEALTH * PlayerStats.MAX_HEALTH_GROWTH_RATE
+			)
 		UpgradeOption.INCREASE_MOVEMENT_SPEED:
-			PlayerStats.movement_speed += PlayerStats.BASE_MOVEMENT_SPEED * 0.1
+			PlayerStats.movement_speed += (
+				PlayerStats.BASE_MOVEMENT_SPEED * PlayerStats.MOVEMENT_SPEED_GROWTH_RATE
+			)
 		UpgradeOption.INCREASE_EXPERIENCE:
-			PlayerStats.experience_multiplier += PlayerStats.BASE_EXPERIENCE_MULTIPLIER * 0.1
+			PlayerStats.experience_multiplier += (
+				PlayerStats.BASE_EXPERIENCE_MULTIPLIER
+				* PlayerStats.EXPERIENCE_MULTIPLIER_GROWTH_RATE
+			)
 		UpgradeOption.INCREASE_AMOUNT:
-			PlayerStats.shot_amount += 1
+			PlayerStats.shot_amount += PlayerStats.SHOT_AMOUNT_GROWTH_RATE
 		UpgradeOption.INCREASE_DAMAGE:
-			PlayerStats.shot_damage += PlayerStats.BASE_SHOT_DAMAGE * 0.1
+			PlayerStats.shot_damage += (
+				PlayerStats.BASE_SHOT_DAMAGE * PlayerStats.SHOT_DAMAGE_GROWTH_RATE
+			)
 		UpgradeOption.REDUCE_COOLDOWN:
-			PlayerStats.shot_cooldown -= PlayerStats.BASE_SHOT_COOLDOWN * 0.1
+			PlayerStats.shot_cooldown -= (
+				PlayerStats.BASE_SHOT_COOLDOWN * PlayerStats.SHOT_COOLDOWN_GROWTH_RATE
+			)
 		UpgradeOption.INCREASE_SHOT_SPEED:
-			PlayerStats.shot_speed += PlayerStats.BASE_SHOT_SPEED * 0.1
+			PlayerStats.shot_speed += (
+				PlayerStats.BASE_SHOT_SPEED * PlayerStats.SHOT_SPEED_GROWTH_RATE
+			)
 		UpgradeOption.INCREASE_SHOT_LIFETIME:
-			PlayerStats.shot_lifetime += PlayerStats.BASE_SHOT_LIFETIME * 0.1
-		UpgradeOption.REDUCE_SPREAD:
-			PlayerStats.shot_spread -= PlayerStats.BASE_SHOT_SPREAD * 0.05
+			PlayerStats.shot_lifetime += (
+				PlayerStats.BASE_SHOT_LIFETIME * PlayerStats.SHOT_LIFETIME_GROWTH_RATE
+			)
 
 
 func reset_stats():
