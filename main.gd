@@ -1,17 +1,12 @@
 extends Node2D
 
 @export var EnemyScene = preload("res://enemies/base/base_enemy.tscn")
-@export var TankyScene = preload("res://enemies/base/tanky.tscn")
-@export var BossScene = preload("res://enemies/base/boss.tscn")
+
 #Format:
 #[Duration, How often do we spawn these enemies, [enemies]
 var enemy_table = [
-	[60, 1, [EnemyScene]],
-	[60, 1, [EnemyScene, EnemyScene]],
-	[60, 1, [EnemyScene, EnemyScene, EnemyScene]],
-	[60, 1.5, [EnemyScene, TankyScene]],
-	[60, 1, [TankyScene, TankyScene]],
-	[1, 1, [BossScene]],
+	[15, 1, [EnemyScene, EnemyScene]],
+	[10, 0.5, [EnemyScene, EnemyScene]],
 ]
 
 var next_wave_at = 10.0
@@ -35,19 +30,24 @@ func spawn_enemies():
 	]
 
 	if $EnemySpawnCooldown.is_stopped():
+		var world_state = get_world_2d().get_direct_space_state()
 		var pos = enemy_spawn_position_table.pick_random()
 		for enemy in enemy_table[wave][2]:
 			var new_enemy = enemy.instantiate()
 			var rng = RandomNumberGenerator.new()
 			new_enemy.position = pos + Vector2.ONE * rng.randf_range(-250.0, 250.0)
 			add_child(new_enemy)
-
+			
 			#var query = PhysicsShapeQueryParameters2D.new()
 			#query.shape = new_enemy.get_node("Collider")
 			#while(!world_state.collide_shape(query).is_empty()):
-			while pos.y > 200 || pos.y < -1000:  # bad fix but can't be bothered to get the good one working
+			var tries = 5
+			while(pos.y > 200 || pos.y < -1000): # bad fix but can't be bothered to get the good one working
+				if tries < 0:
+					break
 				pos = enemy_spawn_position_table.pick_random()
 				new_enemy.position = pos + Vector2.ONE * rng.randf_range(-250.0, 250.0)
+				tries = tries - 1
 				#query.shape = new_enemy.get_node("CollisionShape2D")
 		$EnemySpawnCooldown.start()
 
