@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var ShotScene = preload("res://player/scenes/player_shot.tscn")
 @export var SwooshAudioStream = preload("res://assets/swoosh.mp3")
+@export var LaughAudioStream = preload("res://assets/laugh.mp3")
 
 
 func _ready():
@@ -84,6 +85,13 @@ func play_swhoosh_sound():
 	audio_player.stream = SwooshAudioStream
 	audio_player.finished.connect(func(): remove_child(audio_player))
 	add_child(audio_player)
+	
+func play_laugh_sound():
+	var audio_player = AudioStreamPlayer.new()
+	audio_player.autoplay = true
+	audio_player.stream = LaughAudioStream
+	audio_player.finished.connect(func(): remove_child(audio_player))
+	add_child(audio_player)
 
 
 func cleanup_sound(player: AudioStreamPlayer):
@@ -94,6 +102,7 @@ func cleanup_sound(player: AudioStreamPlayer):
 func _on_health_died():
 	Globals.is_dying = true
 	$AnimatedSprite2D.play("death")
+	play_laugh_sound()
 	$AnimatedSprite2D.animation_finished.connect(_on_death_animation_finished)
 
 
