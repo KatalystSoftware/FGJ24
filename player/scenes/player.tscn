@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://djhanqyimpptk"]
+[gd_scene load_steps=28 format=3 uid="uid://djhanqyimpptk"]
 
 [ext_resource type="Script" path="res://player/nodes/player.gd" id="1_swtdm"]
 [ext_resource type="Texture2D" uid="uid://d3m2prlxphppp" path="res://assets/playerSpriteSheet.png" id="2_4oeg1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://shared/nodes/health.gd" id="4_o8ns1"]
 [ext_resource type="Script" path="res://player/nodes/experience.gd" id="5_wkw1t"]
 [ext_resource type="Script" path="res://ui/upgrade_options.gd" id="6_3od36"]
+[ext_resource type="Script" path="res://ui/death_ui.gd" id="7_cxwjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tph56"]
 atlas = ExtResource("2_4oeg1")
@@ -139,6 +140,9 @@ size = Vector2(129, 128)
 [sub_resource type="LabelSettings" id="LabelSettings_6cpcb"]
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_7p8bt"]
+font_size = 48
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 120
 script = ExtResource("1_swtdm")
@@ -205,9 +209,44 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 48
 
+[node name="DeathUI" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("7_cxwjm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeathUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Label" type="Label" parent="DeathUI/VBoxContainer"]
+layout_mode = 2
+text = "You died!"
+label_settings = SubResource("LabelSettings_7p8bt")
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="DeathUI/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="QuitToMenu" type="Button" parent="DeathUI/VBoxContainer"]
+layout_mode = 2
+text = "Quit to Menu"
+
 [node name="RegenCooldown" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]
 [connection signal="level_up" from="Experience" to="." method="_on_experience_level_up"]
+[connection signal="pressed" from="DeathUI/VBoxContainer/Restart" to="DeathUI" method="_on_restart_pressed"]
+[connection signal="pressed" from="DeathUI/VBoxContainer/QuitToMenu" to="DeathUI" method="_on_quit_to_menu_pressed"]

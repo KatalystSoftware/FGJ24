@@ -79,7 +79,12 @@ func get_closest_enemy() -> CharacterBody2D:
 func _on_health_died():
 	Globals.is_dying = true
 	$AnimatedSprite2D.play("death")
-	$AnimatedSprite2D.animation_finished.connect(func(): queue_free())
+	$AnimatedSprite2D.animation_finished.connect(_on_death_animation_finished)
+
+
+func _on_death_animation_finished():
+	$DeathUI.visible = true
+	$AnimatedSprite2D.animation_finished.disconnect(_on_death_animation_finished)
 
 
 func _on_experience_level_up():

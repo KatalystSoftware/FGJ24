@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dl3fw6nhenubu"]
+[gd_scene load_steps=14 format=3 uid="uid://dl3fw6nhenubu"]
 
 [ext_resource type="Script" path="res://enemies/base/base_enemy.gd" id="1_0v5jd"]
 [ext_resource type="Texture2D" uid="uid://ci4yptyfrhd7p" path="res://assets/skibidi_toilet-sheet.png" id="2_8ahve"]
@@ -52,12 +52,15 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouvp5"]
+size = Vector2(84, 27)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5qat"]
 size = Vector2(129, 126)
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
-collision_mask = 52
+collision_mask = 54
 script = ExtResource("1_0v5jd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -69,7 +72,8 @@ autoplay = "attack"
 frame_progress = 0.783628
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_v5qat")
+position = Vector2(0, 48.5)
+shape = SubResource("RectangleShape2D_ouvp5")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 2

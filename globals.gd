@@ -43,3 +43,17 @@ func upgrade_stat(option: UpgradeOption) -> void:
 			PlayerStats.shot_lifetime += PlayerStats.BASE_SHOT_LIFETIME * 0.1
 		UpgradeOption.REDUCE_SPREAD:
 			PlayerStats.shot_spread -= PlayerStats.BASE_SHOT_SPREAD * 0.05
+
+
+func reset_stats():
+	is_dying = false
+	time_elapsed = 0.0
+	PlayerStats.max_health = PlayerStats.BASE_MAX_HEALTH
+	PlayerStats.movement_speed = PlayerStats.BASE_MOVEMENT_SPEED
+	PlayerStats.experience_multiplier = PlayerStats.BASE_EXPERIENCE_MULTIPLIER
+	PlayerStats.shot_amount = PlayerStats.BASE_SHOT_AMOUNT
+	PlayerStats.shot_damage = PlayerStats.BASE_SHOT_DAMAGE
+	PlayerStats.shot_cooldown = PlayerStats.BASE_SHOT_COOLDOWN
+	PlayerStats.shot_speed = PlayerStats.BASE_SHOT_SPEED
+	PlayerStats.shot_lifetime = PlayerStats.BASE_SHOT_LIFETIME
+	PlayerStats.shot_spread = PlayerStats.BASE_SHOT_SPREAD
