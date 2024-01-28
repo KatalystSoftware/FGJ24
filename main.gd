@@ -20,18 +20,13 @@ func spawn_enemies():
 		$EnemySpawnCooldown.wait_time = enemy_table[wave][1]
 
 	var viewport = get_viewport_rect()
-	var viewport_size = viewport.size
-	viewport.position -= viewport_size / 2  # burger fix
-	var nudge = 100
+	var offset = (viewport.size / 2) + Vector2(100, 100)
+	var player_pos = $Player.position
 	var enemy_spawn_position_table = [
-		Vector2(viewport.position.x - nudge, viewport.position.y - nudge),
-		Vector2(viewport.end.x + nudge, viewport.position.y - nudge),
-		Vector2(viewport.position.x - nudge, viewport.end.y + nudge),
-		Vector2(viewport.end.x + nudge, viewport.end.y + nudge),
-		Vector2(viewport.position.x + viewport_size.x / 2, viewport.end.y + nudge),
-		Vector2(viewport.position.x + viewport_size.x / 2, viewport.position.y - nudge),
-		Vector2(viewport.position.x - nudge, viewport.position.y + viewport_size.y / 2),
-		Vector2(viewport.end.x + nudge, viewport.position.y + viewport_size.y / 2),
+		Vector2(player_pos.x - offset.x, player_pos.y - offset.y),
+		Vector2(player_pos.x + offset.x, player_pos.y - offset.y),
+		Vector2(player_pos.x - offset.x, player_pos.y + offset.y),		
+		Vector2(player_pos.x + offset.x, player_pos.y + offset.y),
 	]
 
 	if $EnemySpawnCooldown.is_stopped():
