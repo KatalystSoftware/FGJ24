@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bie7r7j7dg4sw"]
+[gd_scene load_steps=4 format=3 uid="uid://bie7r7j7dg4sw"]
 
 [ext_resource type="Script" path="res://ui/debug_overlay.gd" id="1_k48hs"]
+[ext_resource type="Script" path="res://ui/debug_ui.gd" id="1_q70ue"]
 [ext_resource type="Script" path="res://ui/fps_meter.gd" id="2_db0dc"]
 
 [node name="Debug UI" type="CanvasLayer"]
 process_mode = 3
+visible = false
+script = ExtResource("1_q70ue")
 
 [node name="Stats" type="MarginContainer" parent="."]
 offset_right = 40.0
