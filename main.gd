@@ -1,12 +1,14 @@
 extends Node2D
 
 @export var EnemyScene = preload("res://enemies/base/base_enemy.tscn")
-
+@export var TankyScene = preload("res://enemies/base/tanky.tscn")
 #Format:
 #[Duration, How often do we spawn these enemies, [enemies]
 var enemy_table = [
 	[15, 1, [EnemyScene, EnemyScene]],
 	[10, 0.5, [EnemyScene, EnemyScene]],
+	[10, 1.5, [EnemyScene, TankyScene]],
+	[10, 1, [EnemyScene, TankyScene]],
 ]
 
 var next_wave_at = 10.0

@@ -15,8 +15,8 @@ func _ready():
 	DebugUI.get_node("Stats").add_property(self, "experience_to_level")
 
 
-func collect_experience():
-	experience += 1.0 * PlayerStats.experience_multiplier
+func collect_experience(amount : float):
+	experience += amount * PlayerStats.experience_multiplier
 	if experience >= experience_to_level:
 		level += 1
 		experience = 0.0

@@ -71,7 +71,7 @@ animation = &"attack"
 autoplay = "attack"
 frame_progress = 0.783628
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 48.5)
 shape = SubResource("RectangleShape2D_ouvp5")
 

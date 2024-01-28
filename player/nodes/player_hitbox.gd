@@ -12,9 +12,9 @@ func damage(amount: int = 1) -> void:
 	health.take_damage(amount)
 
 
-func collect() -> void:
+func collect(amount : float = 1.0) -> void:
 	if not experience:
 		push_warning("Unconnected hitbox")
 		return
 
-	experience.collect_experience()
+	experience.collect_experience(amount)
