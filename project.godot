@@ -10,10 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Fgj 24"
+config/name="Office Hours"
+config/description="Try to survive your first few days in the office! While your coworkers are having fun and trying to make you laugh, your boss is very serious and is coming to fire you if he hears you laugh."
+config/version="1.0.0s"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://assets/icon.svg"
+boot_splash/bg_color=Color(0.1, 0.1, 0.1, 1)
+boot_splash/image="res://assets/icon.png"
+boot_splash/use_filter=false
+config/icon="res://assets/icon.png"
 
 [autoload]
 
@@ -21,6 +26,10 @@ DebugUI="*res://ui/debug_ui.tscn"
 PlayerStats="*res://player/globals/player_stats.gd"
 Globals="*res://globals.gd"
 GlobalMusic="*res://global_music.tscn"
+
+[display]
+
+window/size/mode=3
 
 [input]
 
@@ -69,3 +78,4 @@ show_debug_stats={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.1, 0.1, 0.1, 1)
