@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://drtoywjbcmv7"
+uid="uid://dm3xs5av4tyof"
 path="res://.godot/imported/officeHours.wav-5337bbc5f78536bf576cbf08ad48d316.sample"
 
 [deps]
@@ -13,7 +13,6 @@ dest_files=["res://.godot/imported/officeHours.wav-5337bbc5f78536bf576cbf08ad48d
 [params]
 
 force/8_bit=false
-<<<<<<< HEAD
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
@@ -23,14 +22,3 @@ edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
 compress/mode=0
-=======
-force/mono=true
-force/max_rate=false
-force/max_rate_hz=44100
-edit/trim=true
-edit/normalize=true
-edit/loop_mode=2
-edit/loop_begin=0
-edit/loop_end=3341344
-compress/mode=1
->>>>>>> ff8911bacc64609069edea8d012ad89d9001e818

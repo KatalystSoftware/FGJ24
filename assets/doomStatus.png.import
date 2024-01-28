@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1e4iu5q0rw38"
-path="res://.godot/imported/fireinthehole.png-37c8a1453f2fcd0914f0a20fc58d25d4.ctex"
+uid="uid://l0u6m0mrpyi1"
+path="res://.godot/imported/doomStatus.png-0a5c72a29895eb50de4d8f363abf0f31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fireinthehole.png"
-dest_files=["res://.godot/imported/fireinthehole.png-37c8a1453f2fcd0914f0a20fc58d25d4.ctex"]
+source_file="res://assets/doomStatus.png"
+dest_files=["res://.godot/imported/doomStatus.png-0a5c72a29895eb50de4d8f363abf0f31.ctex"]
 
 [params]
 
