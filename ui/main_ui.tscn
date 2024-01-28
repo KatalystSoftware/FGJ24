@@ -1,25 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjax6u8sj1x1f"]
+[gd_scene load_steps=7 format=3 uid="uid://bjax6u8sj1x1f"]
 
+[ext_resource type="Script" path="res://ui/game_timer.gd" id="1_5yd38"]
 [ext_resource type="Script" path="res://ui/hp_bar.gd" id="1_spuqh"]
 [ext_resource type="Script" path="res://ui/xp_bar.gd" id="1_uilr4"]
 [ext_resource type="Script" path="res://ui/level_label.gd" id="2_8ct5m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dru16"]
+font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_24u54"]
 font_size = 24
 
 [node name="MainUI" type="CanvasLayer"]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -27.0
+offset_top = -80.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="GameTimer" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_dru16")
+horizontal_alignment = 1
+script = ExtResource("1_5yd38")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="XPBar" type="ProgressBar" parent="HBoxContainer"]
+[node name="XPBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer"]
 self_modulate = Color(0, 0, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -29,12 +42,12 @@ rounded = true
 show_percentage = false
 script = ExtResource("1_uilr4")
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer"]
 self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 
-[node name="LevelLabel" type="Label" parent="HBoxContainer/ColorRect"]
+[node name="LevelLabel" type="Label" parent="VBoxContainer/HBoxContainer/ColorRect"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -48,7 +61,7 @@ label_settings = SubResource("LabelSettings_24u54")
 horizontal_alignment = 1
 script = ExtResource("2_8ct5m")
 
-[node name="HPBar" type="ProgressBar" parent="HBoxContainer"]
+[node name="HPBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer"]
 self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3

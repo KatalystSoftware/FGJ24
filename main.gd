@@ -6,15 +6,15 @@ extends Node2D
 #[Duration, How often do we spawn these enemies, [enemies]
 var enemy_table = [
 	[10, 1, [EnemyScene, EnemyScene]],
-	[10, 1, [EnemyScene, EnemyScene]],
+	[10, 1, [EnemyScene, EnemyScene, EnemyScene]],
 ]
-var time_elapsed = 0.0
+
 var next_wave_at = 10.0
 var wave = 0
 
 
 func spawn_enemies():
-	if next_wave_at <= time_elapsed && wave < enemy_table.size() - 1:
+	if next_wave_at <= Globals.time_elapsed && wave < enemy_table.size() - 1:
 		next_wave_at += enemy_table[wave][0]
 		wave += 1
 		$EnemySpawnCooldown.wait_time = enemy_table[wave][1]
@@ -65,5 +65,5 @@ func _process(delta):
 		remove_enemies()
 		return
 
-	time_elapsed += delta
+	Globals.time_elapsed += delta
 	spawn_enemies()

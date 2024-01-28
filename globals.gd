@@ -13,6 +13,7 @@ enum UpgradeOption {
 }
 
 var is_dying = false
+var time_elapsed = 0.0
 
 
 func get_random_upgrades():
