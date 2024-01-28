@@ -1,55 +1,32 @@
-[gd_scene load_steps=14 format=3 uid="uid://cpoerhrsu1bcc"]
+[gd_scene load_steps=12 format=3 uid="uid://cpoerhrsu1bcc"]
 
 [ext_resource type="Script" path="res://enemies/base/base_enemy.gd" id="1_y1ckm"]
-[ext_resource type="Texture2D" uid="uid://1ea0dmyqfs26" path="res://assets/skibidi_toilet-sheet3.png" id="2_be6uc"]
+[ext_resource type="Texture2D" uid="uid://cplo7wdyi1sq8" path="res://assets/fireinthehole.png" id="2_ulsp2"]
 [ext_resource type="Script" path="res://shared/nodes/hitbox.gd" id="3_0y6kn"]
 [ext_resource type="Script" path="res://shared/nodes/health.gd" id="4_6n77r"]
 [ext_resource type="Script" path="res://enemies/nodes/state_machine.gd" id="5_pxlqx"]
 [ext_resource type="Script" path="res://enemies/nodes/states/chase.gd" id="6_ev4fo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_07ku1"]
-atlas = ExtResource("2_be6uc")
-region = Rect2(0, 0, 32, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a32g"]
+atlas = ExtResource("2_ulsp2")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xp8wt"]
-atlas = ExtResource("2_be6uc")
-region = Rect2(32, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqrgp"]
-atlas = ExtResource("2_be6uc")
-region = Rect2(64, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4dtu6"]
-atlas = ExtResource("2_be6uc")
-region = Rect2(96, 0, 32, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws3pr"]
+atlas = ExtResource("2_ulsp2")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7d7qc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_07ku1")
+"texture": SubResource("AtlasTexture_8a32g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xp8wt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rqrgp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4dtu6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rqrgp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xp8wt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_07ku1")
+"texture": SubResource("AtlasTexture_ws3pr")
 }],
 "loop": true,
-"name": &"attack",
-"speed": 6.0
+"name": &"new_animation",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ouvp5"]
@@ -58,7 +35,7 @@ size = Vector2(84, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5qat"]
 size = Vector2(129, 126)
 
-[node name="Tanky" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Boss" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 54
 script = ExtResource("1_y1ckm")
@@ -67,8 +44,9 @@ script = ExtResource("1_y1ckm")
 position = Vector2(0.499996, -65)
 scale = Vector2(4.03125, 4.03125)
 sprite_frames = SubResource("SpriteFrames_7d7qc")
-animation = &"attack"
-autoplay = "attack"
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.381185
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 48.5)
@@ -85,7 +63,7 @@ shape = SubResource("RectangleShape2D_v5qat")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_6n77r")
-count = 6.0
+count = 9999.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_pxlqx")
@@ -94,6 +72,7 @@ initial_state = NodePath("Chase")
 [node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_ev4fo")
 enemy = NodePath("../..")
+move_speed = 2000.0
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
