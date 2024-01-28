@@ -20,6 +20,7 @@ config/icon="res://assets/icon.svg"
 DebugUI="*res://ui/debug_ui.tscn"
 PlayerStats="*res://player/globals/player_stats.gd"
 Globals="*res://globals.gd"
+GlobalMusic="*res://global_music.tscn"
 
 [input]
 

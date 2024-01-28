@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @export var ShotScene = preload("res://player/scenes/player_shot.tscn")
+@export var SwooshAudioStream = preload("res://assets/swoosh.mp3")
 
 
 func _ready():
@@ -38,6 +39,7 @@ func _physics_process(_delta):
 
 	if $Cooldown.is_stopped():
 		shoot_nearest_enemy()
+		play_swhoosh_sound()
 		$Cooldown.wait_time = PlayerStats.shot_cooldown
 		$Cooldown.start()
 
@@ -74,6 +76,19 @@ func get_closest_enemy() -> CharacterBody2D:
 			nearest_enemy = enemy
 
 	return nearest_enemy
+
+
+func play_swhoosh_sound():
+	var audio_player = AudioStreamPlayer.new()
+	audio_player.autoplay = true
+	audio_player.stream = SwooshAudioStream
+	audio_player.finished.connect(func(): remove_child(audio_player))
+	add_child(audio_player)
+
+
+func cleanup_sound(player: AudioStreamPlayer):
+	remove_child(player)
+	player.queue_free()
 
 
 func _on_health_died():
