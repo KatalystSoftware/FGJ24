@@ -25,7 +25,7 @@ func spawn_enemies():
 	var enemy_spawn_position_table = [
 		Vector2(player_pos.x - offset.x, player_pos.y - offset.y),
 		Vector2(player_pos.x + offset.x, player_pos.y - offset.y),
-		Vector2(player_pos.x - offset.x, player_pos.y + offset.y),		
+		Vector2(player_pos.x - offset.x, player_pos.y + offset.y),
 		Vector2(player_pos.x + offset.x, player_pos.y + offset.y),
 	]
 
