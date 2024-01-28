@@ -6,11 +6,12 @@ extends Node2D
 #Format:
 #[Duration, How often do we spawn these enemies, [enemies]
 var enemy_table = [
-	[15, 1, [EnemyScene, EnemyScene]],
-	[1, 0.5, [EnemyScene, EnemyScene]],
-	[1, 1.5, [EnemyScene, TankyScene]],
-	[1, 1, [EnemyScene, TankyScene]],
-	[10, 1, [BossScene]],
+	[60, 1, [EnemyScene]],
+	[60, 1, [EnemyScene, EnemyScene]],
+	[60, 1, [EnemyScene, EnemyScene, EnemyScene]],
+	[60, 1.5, [EnemyScene, TankyScene]],
+	[60, 1, [TankyScene, TankyScene]],
+	[1, 1, [BossScene]],
 ]
 
 var next_wave_at = 10.0
